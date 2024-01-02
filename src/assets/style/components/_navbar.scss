@@ -1,0 +1,91 @@
+.navBar {
+    width: 100%;
+    background: transparent;
+    background-size: contain;
+    background-repeat: round;
+    align-items: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    position: fixed;
+    padding: 18px 0;
+
+    .fa-bars {
+        cursor: pointer;
+        padding: 0 5px;
+        position: relative;
+        font-size: 24px;
+        right: 1px;
+        top: -7px;
+    }
+
+    &_left,
+    &_right {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 1px 28px;
+
+        p {
+            font-weight: 600;
+            font-size: 22px;
+            color: #b7c0cd;
+            ;
+        }
+
+        i {
+            font-weight: 600;
+            font-size: 22px;
+            color: #ffff;
+            cursor: pointer;
+        }
+    }
+
+
+    &_heading {
+        // background-color: #E8E9AD;
+        padding: 18px 40px;
+        font-size: 20px;
+        // height: 100%;
+        color: #fff;
+        font-weight: 500;
+    }
+
+    &_logo {
+        cursor: pointer;
+        margin: 7px 0;
+        width: 115px;
+        position: relative;
+        right: 12px;
+    }
+
+}
+
+// @media (max-width: 700px) {
+
+//     .navBar {
+
+//         &_heading {
+//             padding: 15px;
+//             font-size: 15px;
+//         }
+
+//         &_logo {
+//             width: 81px;
+//             margin: 0 14px;
+//         }
+
+//         &_right {
+//             padding: 0;
+//             margin-right: 10px;
+//             p, i {
+//                 font-size: 12px;
+//             }
+//         }
+
+//         &_left {
+//             padding: 0;
+//         }
+//     }
+// }

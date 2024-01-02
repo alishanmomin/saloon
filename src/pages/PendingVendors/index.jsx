@@ -1,0 +1,204 @@
+import React from 'react'
+import Sidebar from '../../components/Sidebar'
+import PendingVendorTable from '../../components/Tables/PendingVendorTable'
+import Confirmation from '../../components/Modals/Confirmation'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
+import girlImg from "../../assets/images/girlImg.png"
+import { useNavigate } from 'react-router-dom'
+import { BiSearchAlt } from 'react-icons/bi'
+
+const PendingVendors = () => {
+    const [modal, setModal] = useState("")
+    const [tick, setTick] = useState(false)
+    const navigate = useNavigate()
+    const allVendorData = [
+        {
+            vendorName: "Tom",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: true,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Seller"
+        },
+        {
+            vendorName: "Tom",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: false,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Producer"
+        },
+        {
+            vendorName: "Tom",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: true,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Producer"
+        },
+        {
+            vendorName: "Tom",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: true,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Producer"
+        },
+        {
+            vendorName: "Tom",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: false,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Seller"
+        },
+        {
+            vendorName: "Tom",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: true,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Seller"
+        },
+        {
+            vendorName: "Tom",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: true,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Producer"
+        },
+        {
+            vendorName: "Tom",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: false,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Seller"
+        },
+        {
+            vendorName: "Tom",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: true,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Producer"
+        },
+        {
+            vendorName: "Tom",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: true,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Seller"
+        },
+        {
+            vendorName: "Tom",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: false,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Seller"
+        },
+        {
+            vendorName: "Tom",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: true,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Seller"
+        },
+    ]
+
+    const handleAction = (res) => {
+        if (res === 'accept') {
+            setTick(false)
+            setModal('view')
+        } else if (res === "reject") {
+            setTick(true)
+            setModal('view')
+        }
+    }
+
+
+    const handleModal = (res) => {
+        if (res === "yes") {
+            setModal("")
+            toast.success(`Vendor ${!tick ? "accepted" : "rejected"} succesfully`)
+        }
+    }
+
+
+    return (
+        <>
+            <div className="mainLayout">
+                <div className="mainLayout_parent">
+                    {modal === "view" && <Confirmation handleModal={handleModal} tick={tick} setModal={setModal} />}
+                    <Sidebar index={"2b"} />
+                    <div className="dashboard">
+                        <div className='dashboard_infoOptionTop'>
+                            <div>
+                                <div className='dashboard_topLeftHead'>
+                                    <p className="dashboard_title"><i onClick={() => navigate("/dashboard")} class="fa-solid dashIcon fa-house"></i> / Pending Appointments</p>
+                                    {/* <p className='bottomSpel'>Pending Vendors</p> */}
+                                </div>
+                            </div>
+
+                            <div className='dashboard_lastTop'>
+                                <div className="dashboard_inputWrap">
+                                    <input type="text" placeholder='Type customer name or email...' />
+                                    <BiSearchAlt className='fa-solid' />
+                                    {/* <i class="fa-solid fa-magnifying-glass"></i> */}
+                                </div>
+                                {/* <i onClick={() => disptach(setOpen(open === true ? false : true))} class="fa-solid dashboard_links fa-bars"></i> */}
+                            </div>
+                        </div>
+
+                        <div style={{ marginTop: "10px" }} className='dashboard_whiteBox'>
+                            <PendingVendorTable handleAction={handleAction} allVendorData={allVendorData} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+export default PendingVendors

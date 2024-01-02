@@ -1,0 +1,218 @@
+.dashboard {
+    width: 100%;
+    margin-top: 8px;
+    flex: 1 1 auto;
+    overflow: auto;
+    padding: 0 18px;
+    // margin-bottom: 52px;
+
+
+    &_topLeftHead {
+        display: flex;
+        flex-direction: column;
+        // text-align: left;
+        gap: 20px;
+
+        .bottomSpel {
+            color: #F3F2F4;
+            font-weight: bold !important;
+            font-size: 16px;
+        }
+    }
+
+
+    &_backImg {
+        width: 38px;
+        cursor: pointer;
+        margin: 0 6px;
+        border-radius: 50%;
+        position: relative;
+    }
+
+    &_title {
+        color: white;
+        font-size: 27px;
+        font-weight: 600;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        cursor: pointer;
+        // border-bottom: 1px solid lightgrey;
+        // padding-bottom: 3px;
+    }
+
+
+    &_pageName {
+        color: #66615b;
+        font-size: 21px;
+        font-weight: 400;
+    }
+
+    &_whiteBox {
+        background: linear-gradient(127.09deg, rgba(6, 11, 40, 0.94) 19.41%, rgba(10, 14, 35, 0.49) 76.65%) border-box;
+        ;
+        padding: 0px 0;
+        border-radius: 20px;
+    }
+
+
+    &_inputWrap {
+        position: relative;
+
+        .fa-solid {
+            position: absolute;
+            left: 8px;
+            top: 9px;
+            font-size: 26px;
+            cursor: pointer;
+            color: #9CA3AC;
+        }
+    }
+
+
+    &_infoOption {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 4px 20px;
+        flex-wrap: wrap;
+        gap: 10px 0px;
+        margin-bottom: 15px;
+
+
+        div {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+
+
+        .allEvents {
+            background: linear-gradient(to right, #070C2B, #111743);
+            ;
+            // #111743
+            color: white;
+        }
+
+        p {
+            font-size: 23px;
+            color: white;
+            font-weight: 600;
+        }
+
+    }
+
+
+    &_lastTop {
+        display: flex;
+        align-items: center;
+    }
+
+
+
+    &_infoOptionTop {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 4px 10px;
+        flex-wrap: wrap;
+        gap: 10px 0px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+
+
+        div {
+            display: flex;
+            gap: 3px;
+            flex-wrap: wrap;
+            // align-items: center;
+        }
+
+
+
+        input {
+            padding: 8px 0px;
+            padding-left: 45px;
+            padding-right: 20px;
+            border-radius: 15px;
+            border: 1px solid #474D68;
+            font-weight: 500;
+            color: white;
+            background-color: rgb(15, 21, 53);
+        }
+
+        input::placeholder {
+            font-weight: 600;
+            font-size: 13px;
+            color: #9CA3AC;
+        }
+
+        input:focus {
+            box-shadow: rgb(98, 143, 194) 0rem 0rem 0rem 0.125rem;
+        }
+
+        select {
+            padding: 11px 0px;
+            padding-left: 20px;
+            padding-right: 40px;
+            border-radius: 50px;
+            border: 1px solid #474D68;
+            font-weight: 500;
+            color: white;
+            background-color: rgb(15, 21, 53);
+            margin: 0 10px;
+            cursor: pointer;
+        }
+
+        p {
+            font-size: 13px;
+            color: #E5E5E7;
+            font-weight: 600;
+        }
+
+
+        .dashIcon {
+            color: #87848F;
+            font-size: 13px;
+            margin-right: 6px;
+        }
+
+        button {
+            background-color: var(--darkGrey);
+            padding: 9px 25px;
+            border: none;
+            outline: none;
+            border-radius: 9px;
+            color: white;
+            transition: 0.2s ease-in;
+            // font-weight: bold;
+            margin: 0 5px;
+        }
+
+        button:hover {
+            background-color: #0664cf;
+        }
+    }
+
+
+    &_links {
+        color: white !important;
+        cursor: pointer;
+        margin: 0 10px;
+    }
+
+
+    @media (max-width: 700px) {
+        .dashboard_infoOptionTop {
+            margin-top: 40px;
+        }
+
+        .dashboard_infoOptionTop div {
+            gap: 15px;
+        }
+    }
+}

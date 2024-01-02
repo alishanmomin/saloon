@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 8px;
+}
+
+
+:-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--darkGrey);
+  border-radius: 6px;
+}
+
+
+// input type number remove arrows
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+p {
+  margin-bottom: 0;
+}
+
+.mainLayout {
+  display: flex;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  width: 100%;
+//   background: url("../images/body-background.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  background: #151832;
+  // background: #F4F3EF;
+
+  &_parent {
+    display: flex;
+    width: 100%;
+    position: relative;
+  }
+}
+
+
+.background {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  &_content {
+    flex: 1;
+  }
+}
+
+
+// Pages
+@import "./pages/login";
+@import "./pages/dashboard";
+
+// colors
+@import "../style/colors/colors";
+
+// Components
+@import "./components/sidebar";
+@import "./components/navbar";
+@import "./components/dashboardTopCards";
+@import "./components/setPassword";
+@import "./components/allVendorsTop";
+@import "./components/subscriptionTop";
+@import "./components/switch";
+@import "./components/complaints";
+
+
+
+// Modals
+@import "../style/components/Modals/vendorDetail";
+@import "../style/components/Modals/confirmation";
+@import "../style/components/Modals/viewOrder";
+@import "../style/components/Modals/addProductCategory";
+
+
+
+// Loader
+@import "../style/components/loader";
+
+// Font Family
+@import "../style/Fontfamily/fontFamily";
+
+
+// Table
+@import "./components/tables";
+
+
+// React-toastify
+@import 'react-toastify/dist/ReactToastify.css';

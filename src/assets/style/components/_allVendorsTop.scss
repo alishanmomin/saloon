@@ -1,0 +1,85 @@
+.allVendorsTop {
+    display: grid;
+    // grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    align-items: center;
+    margin-top: 25px;
+
+
+    &_bgColor {
+        padding: 0.75rem;
+        background-color: #0075FF;
+        border-radius: 10px;
+    }
+
+    &_single {
+        background-color: #0B0C24;
+        border-radius: 10px;
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        align-items: center;
+        position: relative;
+        padding: 22px 15px;
+
+
+        .smallLable {
+            color: #8E9BAF;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .euros {
+            color: #FFFFFF;
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .green {
+            color: #01B574;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+
+        .icon {
+            // background-color: #0075FF;
+            // padding: 16px 16px;
+            // border-radius: 12px;
+            color: white !important;
+        }
+    }
+
+
+
+
+    &_rightSide {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+
+    &_number {
+        font-weight: 600;
+        font-size: 22px;
+        color: white;
+        text-align: right;
+    }
+
+    &_text {
+        font-size: 17px;
+        text-align: right;
+        color: #555E75;
+        font-weight: 600;
+    }
+
+
+}
+
+@media (max-width: 1000px) {
+    .allVendorsTop {
+        grid-template-columns: 1fr;
+        justify-content: center;
+    }
+}
