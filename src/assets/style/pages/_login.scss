@@ -13,13 +13,13 @@
 
 
   &_boxLeft {
-    background: url("../../images/saloon.jpg");
+    background: url("../../images/title.jpg");
     height: 100%;
     width: 100%;
     background-repeat: no-repeat;
-    background-position: center;
-    background-size: inherit;
-    background-blend-mode: multiply;
+    background-position: right;
+    background-size: cover;
+    background-blend-mode: soft-light;
     background-color: #483d8b;
   }
 
@@ -118,7 +118,7 @@
   &_btn {
     width: 100%;
     padding: 10px 0;
-    background-color: #0075FF;
+    background-color: #f2b203;
     color: white;
     border-radius: 10px;
     border: none;

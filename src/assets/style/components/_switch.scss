@@ -32,7 +32,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
     border: 1px solid rgb(47, 56, 103);
     -webkit-transition: 0.4s;
     transition: 0.4s;
-    background-color: #0075FF;
+    background-color: #f2b203;
 }
 
 .slider:before {
@@ -47,8 +47,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 input:checked+.slider {
-    background-color: #0075FF !important;
-    // border: 1px solid #0075FF;
+    background-color: #f2b203 !important;
+    // border: 1px solid #f2b203;
 }
 
 // input:focus+.slider {
