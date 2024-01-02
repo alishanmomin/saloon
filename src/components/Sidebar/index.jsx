@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../../assets/images/sidebarLogo.png";
+import logo from "../../assets/images/logo.png";
 import sidebarLogo from "../../assets/images/sidebarIcon.svg";
 
 // 
@@ -183,11 +183,9 @@ const Sidebar = ({ index }) => {
                 <div className={!open ? "sideBar" : "sideBar sideBar_sidebarActive"} ref={componentRef2}>
                     <div className={open ? "sideBar_inner" : "sideBar_innersmall"}>
                         <div className="sideBar_eventInfo">
-                            {/* <img src={circleImg} alt="eventInfo" /> */}
                             <div className="sideBar_eventText">
                                 <p className="channelName">
-                                    <img src={sidebarLogo} className="sidebarLogo" alt="sidebarLogo" /> <img onClick={() => navigate("/dashboard")} className="logo" src={logo} alt="logo" /></p>
-
+                                     <img onClick={() => navigate("/dashboard")} className="logo" src={logo} alt="logo" /></p>
                                 <hr />
                             </div>
                         </div>

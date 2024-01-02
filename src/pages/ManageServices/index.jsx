@@ -86,7 +86,7 @@ const ManageService = () => {
                         <div className='dashboard_infoOptionTop'>
                             <div>
                                 <div className='dashboard_topLeftHead'>
-                                    <p className="dashboard_title"><i onClick={() => navigate("/dashboard")} class="fa-solid dashIcon fa-house"></i> / <p onClick={() => navigate("/productAttribute")}>Our Services</p>  / Manage Services</p>
+                                    <p className="dashboard_title"><i onClick={() => navigate("/dashboard")} class="fa-solid dashIcon fa-house"></i> / <p onClick={() => navigate("/services")}>Our Services</p>  / Manage Services</p>
                                     {/* <p className='bottomSpel'>Product Attribute</p> */}
                                 </div>
                             </div>

@@ -17,26 +17,26 @@ const Dashboard = () => {
     const data = [
         {
             text: "50",
-            number: "Vendors Request",
+            number: "Customer Request",
             Icons: IoWallet,
             bottomText: " Update Now",
         },
         {
             text: "10",
-            number: "Total Orders",
+            number: "Total Appointments",
             pic: "fa-solid fa-globe",
             Icons: TbWorld,
             bottomText: "Last day"
         },
         {
             text: "2",
-            number: "Complaints",
+            number: "Total Reviews",
             Icons: FaFileLines,
             bottomText: " In the last hour",
         },
         {
             text: "20",
-            number: "Total Vendors",
+            number: "Total Services",
             Icons: IoCart,
             pic: "fa-solid fa-cart-shopping",
             bottomText: " Update now",

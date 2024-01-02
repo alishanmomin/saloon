@@ -1,7 +1,8 @@
 import React from 'react'
+import hair from '../../assets/images/hairCut.jpg'
 
 const ManageServiceTable = ({ manageAttributeData, setModal }) => {
-    const header = ['No.', "Name", "Price",  'Disable / Enable', "Edit"]
+    const header = ['No.', 'Image', "Name", "Price",  'Disable / Enable', "Edit"]
 
     return (
         <div className='tables'>
@@ -21,6 +22,9 @@ const ManageServiceTable = ({ manageAttributeData, setModal }) => {
                             return (
                                 <tr>
                                     <td>{index + 1}</td>
+                                    <td>
+                                        <img className='tables_img' src={hair} alt='' />
+                                    </td>
                                     <td>{item?.categoryName}</td>
                                     <td>$20.5</td>
                                     <td>

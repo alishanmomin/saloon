@@ -47,11 +47,11 @@ const MyRoutes = () =>
     });
 
 
-    const PendingVendors = lazy(() =>
+    const PendingAppointments = lazy(() =>
     {
         return new Promise((resolve) =>
         {
-            setTimeout(() => resolve(import("../pages/PendingVendors")), 1300);
+            setTimeout(() => resolve(import("../pages/PendingAppointments")), 1300);
         });
     });
 
@@ -72,11 +72,11 @@ const MyRoutes = () =>
         });
     });
 
-    const ManageAttribute = lazy(() =>
+    const ManageServices = lazy(() =>
     {
         return new Promise((resolve) =>
         {
-            setTimeout(() => resolve(import("../pages/ManageAttribute")), 1300);
+            setTimeout(() => resolve(import("../pages/ManageServices")), 1300);
         });
     });
 
@@ -119,12 +119,12 @@ const MyRoutes = () =>
                         {token ? <Route path="/dashboard" element={<Dashboard />}></Route> : <Route path="/login" element={<Login />}></Route>}
                         <Route element={<AdminPrivate token={token} />}>
                             <Route path="/dashboard" element={<Dashboard />}></Route>
-                            <Route path='/pendingAppointments' element={<PendingVendors />} ></Route>
+                            <Route path='/pendingAppointments' element={<PendingAppointments />} ></Route>
                             <Route path='/allAppointments' element={<AllAppointments />} ></Route>
                             <Route path='/services' element={<OurServices />} ></Route>
                             <Route path='/banner' element={<Banner />} ></Route>
                             <Route path='/reviews' element={<Reviews />} ></Route>
-                            <Route path='/manageServices' element={<ManageAttribute />} ></Route>
+                            <Route path='/manageServices' element={<ManageServices />} ></Route>
                             <Route path='/changePassword' element={<ChangePassword />} ></Route>
                         </Route>
                         <Route path="*" element={token ? (<Navigate to="/dashboard" replace />) : (<Navigate to="/login" replace />)}></Route>

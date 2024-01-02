@@ -2,7 +2,7 @@ import React from 'react'
 
 const AllVendorsTable = ({ allVendorData, setModal, homeView }) => {
     console.log(homeView)
-    const header = ['No.', 'Customer', 'Appointment Type', 'Contact No', 'Date and Time', 'Appointment Status']
+    const header = ['No.', 'Customer', 'Appointment Type', 'Location', 'Contact No', 'Date and Time', 'Appointment Status']
 
     const handleView = () => {
         setModal("view")
@@ -35,6 +35,7 @@ const AllVendorsTable = ({ allVendorData, setModal, homeView }) => {
                                         </div>
                                     </td>
                                     <td>{item?.type}</td>
+                                    <td>{item?.type === 'Home Visit' ?  "ABC Road, Karachi" : "-"}</td>
                                     <td>{item?.contact}</td>
                                     <td>Fri Dec 29 2023 2:00 PM</td>
                                     <td> <p style={{ maxWidth: item?.paymentStatus ? "120px" : "120px", textAlign: "center" }} className={item?.paymentStatus ? "tables_green" : "tables_remove"}>{item?.paymentStatus ? "Active" : "Non Active"}</p> </td>

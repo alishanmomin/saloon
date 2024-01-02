@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from '../../components/Sidebar'
-import PendingVendorTable from '../../components/Tables/PendingVendorTable'
+import PendingAppointmentTable from '../../components/Tables/PendingAppointmentTable'
 import Confirmation from '../../components/Modals/Confirmation'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
@@ -8,7 +8,7 @@ import girlImg from "../../assets/images/girlImg.png"
 import { useNavigate } from 'react-router-dom'
 import { BiSearchAlt } from 'react-icons/bi'
 
-const PendingVendors = () => {
+const PendingAppointments = () => {
     const [modal, setModal] = useState("")
     const [tick, setTick] = useState(false)
     const navigate = useNavigate()
@@ -22,7 +22,7 @@ const PendingVendors = () => {
             paymentStatus: true,
             totalProducts: "5",
             vendorImg: girlImg,
-            type: "Seller"
+            type: "Home Visit"
         },
         {
             vendorName: "Tom",
@@ -33,7 +33,7 @@ const PendingVendors = () => {
             paymentStatus: false,
             totalProducts: "5",
             vendorImg: girlImg,
-            type: "Producer"
+            type: "Walk In"
         },
         {
             vendorName: "Tom",
@@ -44,7 +44,7 @@ const PendingVendors = () => {
             paymentStatus: true,
             totalProducts: "5",
             vendorImg: girlImg,
-            type: "Producer"
+            type: "Walk In"
         },
         {
             vendorName: "Tom",
@@ -55,7 +55,7 @@ const PendingVendors = () => {
             paymentStatus: true,
             totalProducts: "5",
             vendorImg: girlImg,
-            type: "Producer"
+            type: "Walk In"
         },
         {
             vendorName: "Tom",
@@ -66,7 +66,7 @@ const PendingVendors = () => {
             paymentStatus: false,
             totalProducts: "5",
             vendorImg: girlImg,
-            type: "Seller"
+            type: "Home Visit"
         },
         {
             vendorName: "Tom",
@@ -77,7 +77,7 @@ const PendingVendors = () => {
             paymentStatus: true,
             totalProducts: "5",
             vendorImg: girlImg,
-            type: "Seller"
+            type: "Home Visit"
         },
         {
             vendorName: "Tom",
@@ -88,7 +88,7 @@ const PendingVendors = () => {
             paymentStatus: true,
             totalProducts: "5",
             vendorImg: girlImg,
-            type: "Producer"
+            type: "Walk In"
         },
         {
             vendorName: "Tom",
@@ -99,7 +99,7 @@ const PendingVendors = () => {
             paymentStatus: false,
             totalProducts: "5",
             vendorImg: girlImg,
-            type: "Seller"
+            type: "Home Visit"
         },
         {
             vendorName: "Tom",
@@ -110,7 +110,7 @@ const PendingVendors = () => {
             paymentStatus: true,
             totalProducts: "5",
             vendorImg: girlImg,
-            type: "Producer"
+            type: "Walk In"
         },
         {
             vendorName: "Tom",
@@ -121,7 +121,7 @@ const PendingVendors = () => {
             paymentStatus: true,
             totalProducts: "5",
             vendorImg: girlImg,
-            type: "Seller"
+            type: "Home Visit"
         },
         {
             vendorName: "Tom",
@@ -132,7 +132,7 @@ const PendingVendors = () => {
             paymentStatus: false,
             totalProducts: "5",
             vendorImg: girlImg,
-            type: "Seller"
+            type: "Home Visit"
         },
         {
             vendorName: "Tom",
@@ -143,7 +143,7 @@ const PendingVendors = () => {
             paymentStatus: true,
             totalProducts: "5",
             vendorImg: girlImg,
-            type: "Seller"
+            type: "Home Visit"
         },
     ]
 
@@ -192,7 +192,7 @@ const PendingVendors = () => {
                         </div>
 
                         <div style={{ marginTop: "10px" }} className='dashboard_whiteBox'>
-                            <PendingVendorTable handleAction={handleAction} allVendorData={allVendorData} />
+                            <PendingAppointmentTable handleAction={handleAction} allVendorData={allVendorData} />
                         </div>
                     </div>
                 </div>
@@ -201,4 +201,4 @@ const PendingVendors = () => {
     )
 }
 
-export default PendingVendors
+export default PendingAppointments

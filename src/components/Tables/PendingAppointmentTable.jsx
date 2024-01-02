@@ -1,8 +1,8 @@
 import React from 'react'
 
-const PendingVendorTable = ({ allVendorData, handleAction }) => {
+const PendingAppointmentTable = ({ allVendorData, handleAction }) => {
 
-    const header = ['No.', 'Vendor', 'Vendor Type', 'Date', 'Contact', 'Accept', 'Reject']
+    const header = ['No.', 'Customer', 'Appointment Type', 'Location', 'Date', 'Contact', 'Accept', 'Reject']
 
 
     return (
@@ -33,7 +33,8 @@ const PendingVendorTable = ({ allVendorData, handleAction }) => {
                                         </div>
                                     </td>
                                     <td>{item?.type}</td>
-                                    <td>{new Date()?.toDateString()}</td>
+                                    <td>{item?.type === 'Home Visit' ?  "ABC Road, Karachi" : "-"}</td>
+                                    <td>{new Date()?.toDateString()} 2:00 PM</td>
                                     <td>{item?.contact}</td>
                                     <td onClick={() => handleAction("accept")}> <button className='tables_accept'><i class="fa-solid fa-check"></i></button> </td>
                                     <td onClick={() => handleAction("reject")} ><button className='tables_reject'><i class="fa-solid fa-x"></i></button> </td>
@@ -48,7 +49,7 @@ const PendingVendorTable = ({ allVendorData, handleAction }) => {
     )
 }
 
-export default PendingVendorTable
+export default PendingAppointmentTable
 
 
 

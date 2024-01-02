@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Sidebar from '../../components/Sidebar'
-import AllVendorsTop from '../../components/AllVendorsTop'
 import AllAppointmentsTable from '../../components/Tables/AllAppointmentsTable'
 import VendorDetail from '../../components/Modals/VendorDetail'
 import girlImg from "../../assets/images/girlImg.png"

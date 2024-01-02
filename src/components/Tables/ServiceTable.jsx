@@ -1,9 +1,10 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import color from '../../assets/images/hair-coloring.png'
 
-const ProductCategoryTable = ({ productCategoryData, setModal }) => {
+const ServiceTable = ({ productCategoryData, setModal }) => {
 
-    const header = ['No.', "Service Name", 'Description', 'Disable/Enable', "Edit", 'Types']
+    const header = ['No.', "Image", "Service Name", 'Description', 'Disable/Enable', "Edit", 'Types']
     const navigate = useNavigate()
 
     return (
@@ -24,6 +25,9 @@ const ProductCategoryTable = ({ productCategoryData, setModal }) => {
                             return (
                                 <tr>
                                     <td>{index + 1}</td>
+                                    <td>
+                                        <img className='tables_img' src={color} alt=''/>
+                                    </td>
                                     <td>{item?.categoryName}</td>
                                     <td>Cut + Hairstyle</td>
                                     <td>
@@ -50,7 +54,7 @@ const ProductCategoryTable = ({ productCategoryData, setModal }) => {
     )
 }
 
-export default ProductCategoryTable
+export default ServiceTable
 
 
 

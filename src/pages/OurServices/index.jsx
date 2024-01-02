@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from '../../components/Sidebar'
-import ProductCategoryTable from '../../components/Tables/ProductCategoryTable'
+import ServiceTable from '../../components/Tables/ServiceTable'
 import AddProductCategory from '../../components/Modals/AddProductCategory'
 import { useState } from 'react'
 import EditProductCategory from '../../components/Modals/EditProductCategory'
@@ -56,7 +56,7 @@ const OurServices = () => {
                         </div>
 
                         <div style={{ marginTop: '10px' }} className='dashboard_whiteBox'>
-                            <ProductCategoryTable setModal={setModal} productCategoryData={productCategoryData} />
+                            <ServiceTable setModal={setModal} productCategoryData={productCategoryData} />
                         </div>
                     </div>
                 </div>
