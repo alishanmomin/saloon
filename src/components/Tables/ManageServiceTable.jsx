@@ -1,8 +1,9 @@
 import React from 'react'
 import hair from '../../assets/images/hairCut.jpg'
 
-const ManageServiceTable = ({ manageAttributeData, setModal }) => {
-    const header = ['No.', 'Image', "Name", "Price",  'Disable / Enable', "Edit"]
+const ManageServiceTable = ({ manageAttributeData, setModal }) =>
+{
+    const header = ['No.', 'Image', "Name", "Price", "Edit"]
 
     return (
         <div className='tables'>
@@ -18,7 +19,8 @@ const ManageServiceTable = ({ manageAttributeData, setModal }) => {
                         <tr>
                             {header?.map((item) => <th>{item}</th>)}
                         </tr>
-                        {manageAttributeData?.map((item, index) => {
+                        {manageAttributeData?.map((item, index) =>
+                        {
                             return (
                                 <tr>
                                     <td>{index + 1}</td>
@@ -27,16 +29,16 @@ const ManageServiceTable = ({ manageAttributeData, setModal }) => {
                                     </td>
                                     <td>{item?.categoryName}</td>
                                     <td>$20.5</td>
-                                    <td>
+                                    {/* <td>
                                         <label className="switch">
                                             <input
-                                                // onChange={() => handleToggler(res)}
+                                                onChange={() => handleToggler(res)}
                                                 type="checkbox"
-                                            // checked={res?.isActive === true ? true : false}
+                                                checked={res?.isActive === true ? true : false}
                                             />
                                             <span className="slider round"></span>
                                         </label>
-                                    </td>
+                                    </td> */}
                                     <td><button onClick={() => setModal("edit")} className='tables_view'>Edit</button></td>
                                 </tr >
                             );

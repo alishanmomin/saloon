@@ -4,7 +4,7 @@ import color from '../../assets/images/hair-coloring.png'
 
 const ServiceTable = ({ productCategoryData, setModal }) => {
 
-    const header = ['No.', "Image", "Service Name", 'Description', 'Disable/Enable', "Edit", 'Types']
+    const header = ['No.', "Image", "Service Name", 'Description', "Edit", 'Types']
     const navigate = useNavigate()
 
     return (
@@ -30,16 +30,16 @@ const ServiceTable = ({ productCategoryData, setModal }) => {
                                     </td>
                                     <td>{item?.categoryName}</td>
                                     <td>Cut + Hairstyle</td>
-                                    <td>
+                                    {/* <td>
                                         <label className="switch">
                                             <input
-                                                // onChange={() => handleToggler(res)}
+                                                onChange={() => handleToggler(res)}
                                                 type="checkbox"
-                                            // checked={res?.isActive === true ? true : false}
+                                            checked={res?.isActive === true ? true : false}
                                             />
                                             <span className="slider round"></span>
                                         </label>
-                                    </td>
+                                    </td> */}
                                     <td><button onClick={() => setModal("edit")} className='tables_view'>Edit</button></td>
                                     <td><button onClick={() => navigate('/manageServices')} className='tables_manage'>View Types</button></td>
 

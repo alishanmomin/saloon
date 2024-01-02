@@ -173,7 +173,7 @@ const Dashboard = () => {
 
                             <div className='dashboard_lastTop'>
                                 <div className="dashboard_inputWrap">
-                                    <input type="text" placeholder='Type vendor name or email...' />
+                                    <input type="text" placeholder='Type customer name or email...' />
                                     <BiSearchAlt className='fa-solid' />
                                     {/* <i class="fa-solid fa-magnifying-glass"></i> */}
 
