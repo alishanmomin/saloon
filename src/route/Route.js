@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import { lazy } from "react";
 import AdminPrivate from './adminPrivateRoute';
 import { ToastContainer } from 'react-toastify';
-import { Triangle } from 'react-loader-spinner';
+import { ThreeDots } from 'react-loader-spinner';
 
 
 const MyRoutes = () =>
@@ -107,12 +107,15 @@ const MyRoutes = () =>
             <BrowserRouter>
                 <Suspense fallback={
                     <div style={{ background: "#090E25", display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
-                        <Triangle
-                            height="200"
-                            width="200"
-                            color="#0075FF"
-                            ariaLabel="triangle-loading"
+                        <ThreeDots
                             visible={true}
+                            height="80"
+                            width="80"
+                            color="#4fa94d"
+                            radius="9"
+                            ariaLabel="three-dots-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
                         />
                     </div>}>
                     <Routes>
