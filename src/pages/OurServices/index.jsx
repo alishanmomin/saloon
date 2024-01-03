@@ -1,9 +1,9 @@
 import React from 'react'
 import Sidebar from '../../components/Sidebar'
 import ServiceTable from '../../components/Tables/ServiceTable'
-import AddProductCategory from '../../components/Modals/AddProductCategory'
+import AddService from '../../components/Modals/AddService'
 import { useState } from 'react'
-import EditProductCategory from '../../components/Modals/EditProductCategory'
+import EditService from '../../components/Modals/EditService'
 import { useNavigate } from 'react-router-dom'
 import { BiSearchAlt } from 'react-icons/bi'
 
@@ -33,8 +33,8 @@ const OurServices = () => {
             <div className="mainLayout">
                 <div className="mainLayout_parent">
                     <Sidebar index={"6"} />
-                    {modal === 'create' && <AddProductCategory setModal={setModal} />}
-                    {modal === 'edit' && <EditProductCategory setModal={setModal} />}
+                    {modal === 'create' && <AddService setModal={setModal} />}
+                    {modal === 'edit' && <EditService setModal={setModal} />}
                     <div className="dashboard">
                         <div className='dashboard_infoOptionTop'>
                             <div>

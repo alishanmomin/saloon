@@ -6,7 +6,7 @@ import bodySpray from "../../assets/images/bodySpray.webp"
 import camera from "../../assets/images/camera.jpg"
 
 
-const VendorDetail = ({ setModal }) => {
+const ServiceDetail = ({ setModal }) => {
     const Ref1 = useRef()
     const Ref2 = useRef()
 
@@ -90,4 +90,4 @@ const VendorDetail = ({ setModal }) => {
     )
 }
 
-export default VendorDetail
+export default ServiceDetail

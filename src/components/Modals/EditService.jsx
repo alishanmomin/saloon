@@ -4,7 +4,7 @@ import Clickoutside from '../Clickoutside/Clickoutside'
 import uploadIcon from "../../assets/images/uploadIcon.png"
 import { FaRegTrashAlt } from "react-icons/fa";
 
-const AddService = ({ setModal }) =>
+const EditProductCategory = ({ setModal }) =>
 {
 
     const [name, setName] = useState("")
@@ -34,17 +34,6 @@ const AddService = ({ setModal }) =>
         inputRef.current.value = null
     };
 
-
-    const handleAdd = async () => {
-        if (!uploadImg) {
-            toast.warning("Banner required")
-        } else {
-            setModal('')
-            toast.success("Banner Created Succesfully")
-        }
-
-    }
-
     useEffect(() =>
     {
         Clickoutside(ref1, ref2, setModal)
@@ -56,7 +45,7 @@ const AddService = ({ setModal }) =>
         <div ref={ref1} className='addProductCategory'>
             <div ref={ref2} className='addProductCategory_inner'>
                 <div className='addProductCategory_topHead'>
-                    <p>Add Service</p>
+                    <p>Edit Service</p>
                 </div>
                 <div className='addProductCategory_inputWrap'>
 
@@ -82,7 +71,7 @@ const AddService = ({ setModal }) =>
                     </div>
 
                     <div className='addProductCategory_done'>
-                        <button onClick={() => handleEdit()}>Add</button>
+                        <button onClick={() => handleEdit()}>Update</button>
                     </div>
                 </div>
             </div>
@@ -90,4 +79,4 @@ const AddService = ({ setModal }) =>
     )
 }
 
-export default AddService
+export default EditProductCategory
