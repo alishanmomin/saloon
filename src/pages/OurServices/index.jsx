@@ -1,40 +1,37 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Sidebar from '../../components/Sidebar'
 import ServiceTable from '../../components/Tables/ServiceTable'
 import AddService from '../../components/Modals/AddService'
-import { useState } from 'react'
 import EditService from '../../components/Modals/EditService'
 import { useNavigate } from 'react-router-dom'
 import { BiSearchAlt } from 'react-icons/bi'
+import { GetAllCategory } from '../../utilities/api'
 
-const OurServices = () => {
+const OurServices = () =>
+{
+
     const [modal, setModal] = useState("")
-    const productCategoryData = [
-        {
-            categoryName: "Women Hair Cut",
-        },
-        {
-            categoryName: "Men Hair Cut",
-        },
-        {
-            categoryName: "Hair Color",
-        },
-        {
-            categoryName: "Blowouts",
-        },
-        {
-            categoryName: "Waxing",
-        },
-    ]
-    const navigate = useNavigate()
+    const [categories, setCategories] = useState([])
+    const [category, setCategory] = useState({})
 
+    const navigate = useNavigate()
+    const getCategories = async () =>
+    {
+        const data = await GetAllCategory('/getAllCategory')
+        setCategories(data?.data)
+    }
+
+    useEffect(() =>
+    {
+        getCategories()
+    }, [])
     return (
         <>
             <div className="mainLayout">
                 <div className="mainLayout_parent">
                     <Sidebar index={"6"} />
-                    {modal === 'create' && <AddService setModal={setModal} />}
-                    {modal === 'edit' && <EditService setModal={setModal} />}
+                    {modal === 'create' && <AddService getCategories={getCategories} setModal={setModal} />}
+                    {modal === 'edit' && <EditService category={category}  getCategories={getCategories} setModal={setModal} />}
                     <div className="dashboard">
                         <div className='dashboard_infoOptionTop'>
                             <div>
@@ -56,7 +53,7 @@ const OurServices = () => {
                         </div>
 
                         <div style={{ marginTop: '10px' }} className='dashboard_whiteBox'>
-                            <ServiceTable setModal={setModal} productCategoryData={productCategoryData} />
+                            <ServiceTable setCategory={setCategory} setModal={setModal} categories={categories} />
                         </div>
                     </div>
                 </div>

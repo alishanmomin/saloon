@@ -1,8 +1,9 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import color from '../../assets/images/hair-coloring.png'
+// import color from '../../assets/images/hair-coloring.png'
 
-const ServiceTable = ({ productCategoryData, setModal }) => {
+const ServiceTable = ({ categories, setModal, setCategory }) =>
+{
 
     const header = ['No.', "Image", "Service Name", 'Description', "Edit", 'Types']
     const navigate = useNavigate()
@@ -21,15 +22,16 @@ const ServiceTable = ({ productCategoryData, setModal }) => {
                         <tr>
                             {header?.map((item) => <th>{item}</th>)}
                         </tr>
-                        {productCategoryData?.map((item, index) => {
+                        {categories?.map((item, index) =>
+                        {
                             return (
                                 <tr>
                                     <td>{index + 1}</td>
                                     <td>
-                                        <img className='tables_img' src={color} alt=''/>
+                                        <img className='tables_img' src={item?.image} alt='' />
                                     </td>
-                                    <td>{item?.categoryName}</td>
-                                    <td>Cut + Hairstyle</td>
+                                    <td>{item?.heading}</td>
+                                    <td>{item?.text}</td>
                                     {/* <td>
                                         <label className="switch">
                                             <input
@@ -40,8 +42,8 @@ const ServiceTable = ({ productCategoryData, setModal }) => {
                                             <span className="slider round"></span>
                                         </label>
                                     </td> */}
-                                    <td><button onClick={() => setModal("edit")} className='tables_view'>Edit</button></td>
-                                    <td><button onClick={() => navigate('/manageServices')} className='tables_manage'>View Types</button></td>
+                                    <td><button onClick={() => {setCategory(item); setModal("edit")}} className='tables_view'>Edit</button></td>
+                                    <td><button onClick={() => navigate(`/manageServices?id=${item?.id}`)} className='tables_manage'>View Types</button></td>
 
                                 </tr >
                             );

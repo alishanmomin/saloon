@@ -3,32 +3,63 @@ import { toast } from 'react-toastify'
 import Clickoutside from '../Clickoutside/Clickoutside'
 import uploadIcon from "../../assets/images/uploadIcon.png"
 import { FaRegTrashAlt } from "react-icons/fa";
+import { CreateCategory } from '../../utilities/api';
 
-const AddService = ({ setModal }) =>
+const AddService = ({ setModal, getCategories }) =>
 {
 
-    const [name, setName] = useState("")
+    const [inputValues, setInputValues] = useState({
+        image: "https://menshaircuts.com/wp-content/uploads/2023/02/tp-low-fade-haircut-1.jpg"
+    })
+    const [uploadImg, setUploadImg] = useState("")
     const ref1 = useRef()
     const ref2 = useRef()
+    const inputRef = useRef()
+
+    // handle value change
+    const handleValueChange = (e) =>
+    {
+        setInputValues({ ...inputValues, [e?.target?.name]: e?.target?.value })
+    }
 
     const handleEdit = async () =>
     {
-        if (!name)
+        if (!inputValues?.heading)
         {
-            toast.warning("Product Category name required")
-        } else
+            toast.warning("Service name required")
+        }
+        else if (!inputValues?.text)
         {
-            setModal('')
-            toast.success("Product Category Updated Succesfully")
+            toast.warning("Service description required")
+        }
+        else
+        {
+            try
+            {
+                const data = await CreateCategory('/createCategory', inputValues)
+                if (data?.message === "category added successfully")
+                {
+                    setModal('')
+                    toast.success("Service created succesfully")
+                    getCategories()
+                } else
+                {
+                    toast.error("Some error occurred")
+                }
+
+            } catch (error)
+            {
+                toast.error("Some error occurred")
+            }
         }
 
     }
 
-    const [uploadImg, setUploadImg] = useState("")
-    const inputRef = useRef()
+
 
     // handle file upload
-    const handleFileUpload = (e) => {
+    const handleFileUpload = (e) =>
+    {
         const file = e.target.files[0];
         setUploadImg(URL.createObjectURL(file));
         inputRef.current.value = null
@@ -75,10 +106,10 @@ const AddService = ({ setModal }) =>
                         </div>
                     </div>
                     <div className='addProductCategory_inputSec'>
-                        <input type="text" placeholder='Enter service name' onChange={(e) => setName(e.target.value)} />
+                        <input onChange={handleValueChange} name="heading" type="text" placeholder='Enter service name' />
                     </div>
                     <div className='addProductCategory_inputSec'>
-                        <input type="text" placeholder='Enter service description' onChange={(e) => setName(e.target.value)} />
+                        <input onChange={handleValueChange} name="text" type="text" placeholder='Enter service description' />
                     </div>
 
                     <div className='addProductCategory_done'>

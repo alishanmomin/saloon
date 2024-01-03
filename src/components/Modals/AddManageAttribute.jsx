@@ -46,7 +46,7 @@ const AddManageService = ({ setModal }) =>
         <div ref={ref1} className='addProductCategory'>
             <div ref={ref2} className='addProductCategory_inner'>
                 <div className='addProductCategory_topHead'>
-                    <p>Add Service</p>
+                    <p>Add Service Type</p>
                 </div>
                 <div className='addProductCategory_inputWrap'>
 
