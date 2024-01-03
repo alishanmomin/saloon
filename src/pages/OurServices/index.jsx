@@ -17,7 +17,7 @@ const OurServices = () =>
     const navigate = useNavigate()
     const getCategories = async () =>
     {
-        const data = await GetAllCategory('/getAllCategory')
+        const data = await GetAllCategory()
         setCategories(data?.data)
     }
 

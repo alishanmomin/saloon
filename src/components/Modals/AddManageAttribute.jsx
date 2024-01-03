@@ -37,7 +37,7 @@ const AddManageService = ({ setModal, getServiceTypes, categoryId }) =>
         {
             try
             {
-                const data = await CreateService('/createService', inputValues)
+                const data = await CreateService(inputValues)
                 if (data?.message === "services create successfully")
                 {
                     setModal('')

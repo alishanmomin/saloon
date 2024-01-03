@@ -47,7 +47,7 @@ const EditManageService = ({ setModal, service, getServiceTypes }) =>
         {
             try
             {
-                const data = await UpdateService('/updateService', inputValues)
+                const data = await UpdateService(inputValues)
                 if (data?.message === "service updated successfully")
                 {
                     setModal('')

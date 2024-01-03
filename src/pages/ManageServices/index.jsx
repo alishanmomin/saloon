@@ -17,7 +17,7 @@ const ManageService = () =>
 
     const getServiceTypes = async () =>
     {
-        const data = await GetServiceTypes('/getServices', { categoryId })
+        const data = await GetServiceTypes({ categoryId })
         setServicesTypes(data?.data?.services)
     }
     useEffect(() =>

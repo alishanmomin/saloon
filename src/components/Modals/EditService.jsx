@@ -37,7 +37,7 @@ const EditProductCategory = ({ setModal, category, getCategories }) =>
         {
             try
             {
-                const data = await UpdateCategory('/updateCategory', inputValues)
+                const data = await UpdateCategory(inputValues)
                 if (data?.message === "category updated successfully")
                 {
                     setModal('')

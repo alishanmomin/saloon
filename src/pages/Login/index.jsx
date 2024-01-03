@@ -35,7 +35,7 @@ const Login = () =>
         {
             setRequired("")
             try {
-                const data = await SignIn("/login", inputValues)
+                const data = await SignIn(inputValues)
                 if (data?.data?.token)
                 {
                     window.localStorage.setItem("token", data?.data?.token);

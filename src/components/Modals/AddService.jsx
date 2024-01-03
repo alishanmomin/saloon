@@ -36,7 +36,7 @@ const AddService = ({ setModal, getCategories }) =>
         {
             try
             {
-                const data = await CreateCategory('/createCategory', inputValues)
+                const data = await CreateCategory(inputValues)
                 if (data?.message === "category added successfully")
                 {
                     setModal('')
