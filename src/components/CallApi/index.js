@@ -1,11 +1,11 @@
-import axios from 'axios';
+import instance from '../../instance';
 
 export const callApi = async (url, data) =>
 {
     try
     {
         let response;
-        response = await axios.post(url, data);
+        response = await instance.post(url, data);
 
         return { data: response.data, error: null };
     } catch (error)

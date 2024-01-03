@@ -35,15 +35,15 @@ const EditManageService = ({ setModal }) =>
     };
 
 
-    const handleAdd = async () => {
-        if (!uploadImg) {
-            toast.warning("Banner required")
-        } else {
-            setModal('')
-            toast.success("Banner Created Succesfully")
-        }
+    // const handleAdd = async () => {
+    //     if (!uploadImg) {
+    //         toast.warning("Banner required")
+    //     } else {
+    //         setModal('')
+    //         toast.success("Banner Created Succesfully")
+    //     }
 
-    }
+    // }
 
     useEffect(() =>
     {

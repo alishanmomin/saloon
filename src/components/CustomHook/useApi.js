@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import callApi from '../CallApi'; // Import your utility function
 
-const useApi = (url, postData = null) =>
+const useApi = (url, postData = null, executeOnLoad) =>
 {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -23,8 +23,12 @@ const useApi = (url, postData = null) =>
 
     useEffect(() =>
     {
-        fetchData();
-    }, [url, postData]);
+        if (executeOnLoad)
+        {
+            fetchData();
+        }
+        // eslint-disable-next-line
+    }, [url, postData, executeOnLoad]);
 
     return { data, loading, error, fetchData };
 };

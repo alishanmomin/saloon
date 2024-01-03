@@ -1,8 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../assets/images/logo.png";
-import sidebarLogo from "../../assets/images/sidebarIcon.svg";
-
 // 
 import { setOpen } from "../../redux/reducers/info";
 
@@ -14,7 +12,6 @@ import { BiCategory } from "react-icons/bi";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { FiShoppingBag } from "react-icons/fi";
 // import { MdOutlineProductionQuantityLimits } from "react-icons/md";
-import { FaHistory } from "react-icons/fa";
 import { MdOutlineMoodBad } from "react-icons/md";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { IoIosLogOut } from "react-icons/io";
