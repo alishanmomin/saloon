@@ -1,7 +1,7 @@
 import React from 'react'
 import hair from '../../assets/images/hairCut.jpg'
 
-const ManageServiceTable = ({ manageAttributeData, setModal }) =>
+const ManageServiceTable = ({ servicesTypes, setModal, setService }) =>
 {
     const header = ['No.', 'Image', "Name", "Price", "Edit"]
 
@@ -19,7 +19,7 @@ const ManageServiceTable = ({ manageAttributeData, setModal }) =>
                         <tr>
                             {header?.map((item) => <th>{item}</th>)}
                         </tr>
-                        {manageAttributeData?.map((item, index) =>
+                        {servicesTypes?.map((item, index) =>
                         {
                             return (
                                 <tr>
@@ -27,8 +27,8 @@ const ManageServiceTable = ({ manageAttributeData, setModal }) =>
                                     <td>
                                         <img className='tables_img' src={hair} alt='' />
                                     </td>
-                                    <td>{item?.categoryName}</td>
-                                    <td>$20.5</td>
+                                    <td>{item?.service}</td>
+                                    <td>${item?.price}</td>
                                     {/* <td>
                                         <label className="switch">
                                             <input
@@ -39,7 +39,7 @@ const ManageServiceTable = ({ manageAttributeData, setModal }) =>
                                             <span className="slider round"></span>
                                         </label>
                                     </td> */}
-                                    <td><button onClick={() => setModal("edit")} className='tables_view'>Edit</button></td>
+                                    <td><button onClick={() => {setService(item); setModal("edit")}} className='tables_view'>Edit</button></td>
                                 </tr >
                             );
                         })}

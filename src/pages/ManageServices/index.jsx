@@ -1,79 +1,30 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Sidebar from '../../components/Sidebar'
-import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import ManageAttributeTable from '../../components/Tables/ManageServiceTable'
 import AddManageAttribute from '../../components/Modals/AddManageAttribute'
 import EditManageAttribute from '../../components/Modals/EditManageAttribute'
 import { BiSearchAlt } from 'react-icons/bi'
+import { GetServiceTypes } from '../../utilities/api'
 
-const ManageService = () => {
+const ManageService = () =>
+{
     const [modal, setModal] = useState("")
+    const [servicesTypes, setServicesTypes] = useState([])
+    const [service, setService] = useState({})
     const navigate = useNavigate()
+    const categoryId = new URLSearchParams(window?.location?.search)?.get("id")
 
-    const manageAttributeData = [
-        {
-            categoryName: "Red",
-        },
-        {
-            categoryName: "Blue",
-        },
-        {
-            categoryName: "Red",
-        },
-        {
-            categoryName: "Blue",
-        },
-        {
-            categoryName: "Red",
-        },
-        {
-            categoryName: "Blue",
-        },
-        {
-            categoryName: "Red",
-        },
-        {
-            categoryName: "Blue",
-        },
-        {
-            categoryName: "Red",
-        },
-        {
-            categoryName: "Blue",
-        },
-        {
-            categoryName: "Red",
-        },
-        {
-            categoryName: "Blue",
-        },
-        {
-            categoryName: "Red",
-        },
-        {
-            categoryName: "Blue",
-        },
-        {
-            categoryName: "Red",
-        },
-        {
-            categoryName: "Blue",
-        },
-        {
-            categoryName: "Red",
-        },
-        {
-            categoryName: "Blue",
-        },
-        {
-            categoryName: "Red",
-        },
-        {
-            categoryName: "Blue",
-        },
-    ]
-
+    const getServiceTypes = async () =>
+    {
+        const data = await GetServiceTypes('/getServices', { categoryId })
+        setServicesTypes(data?.data?.services)
+    }
+    useEffect(() =>
+    {
+        getServiceTypes()
+        // eslint-disable-next-line
+    }, [])
 
     return (
         <>
@@ -81,8 +32,8 @@ const ManageService = () => {
                 <div className="mainLayout_parent">
                     <Sidebar index={"6"} />
                     <div className="dashboard">
-                        {modal === "create" && <AddManageAttribute setModal={setModal} />}
-                        {modal === "edit" && <EditManageAttribute setModal={setModal} />}
+                        {modal === "create" && <AddManageAttribute categoryId={categoryId} getServiceTypes={getServiceTypes} setModal={setModal} />}
+                        {modal === "edit" && <EditManageAttribute categoryId={categoryId} service={service} getServiceTypes={getServiceTypes} setModal={setModal} />}
                         <div className='dashboard_infoOptionTop'>
                             <div>
                                 <div className='dashboard_topLeftHead'>
@@ -102,7 +53,7 @@ const ManageService = () => {
                             </div>
                         </div>
                         <div style={{ marginTop: "10px" }} className='dashboard_whiteBox'>
-                            <ManageAttributeTable setModal={setModal} manageAttributeData={manageAttributeData} />
+                            <ManageAttributeTable setService={setService} setModal={setModal} servicesTypes={servicesTypes} />
                         </div>
                     </div>
                 </div>

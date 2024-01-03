@@ -23,3 +23,21 @@ export const GetAllCategory = async (url) =>
     const res = await instance.post(url);
     return res?.data;
 }
+
+export const CreateService = async (url, body) =>
+{
+    const res = await instance.post(url, body);
+    return res?.data;
+}
+
+export const GetServiceTypes = async (url, body) =>
+{
+    const res = await instance.post(url, body);
+    return res?.data;
+}
+
+export const UpdateService = async (url, body) =>
+{
+    const res = await instance.post(url, body);
+    return res?.data;
+}

@@ -3,37 +3,68 @@ import { toast } from 'react-toastify'
 import Clickoutside from '../Clickoutside/Clickoutside'
 import uploadIcon from "../../assets/images/uploadIcon.png"
 import { FaRegTrashAlt } from "react-icons/fa";
+import { UpdateService } from '../../utilities/api';
 
-const EditManageService = ({ setModal }) =>
+const EditManageService = ({ setModal, service, getServiceTypes }) =>
 {
 
-    const [name, setName] = useState("")
+    const [inputValues, setInputValues] = useState({
+        serviceId: service?.id,
+        image: "https://menshaircuts.com/wp-content/uploads/2023/02/tp-low-fade-haircut-1.jpg",
+        service: service?.service,
+        price: service?.price
+    })
     const ref1 = useRef()
     const ref2 = useRef()
-
-    const handleEdit = async () =>
-    {
-        if (!name)
-        {
-            toast.warning("Product Category name required")
-        } else
-        {
-            setModal('')
-            toast.success("Product Category Updated Succesfully")
-        }
-
-    }
 
     const [uploadImg, setUploadImg] = useState("")
     const inputRef = useRef()
 
     // handle file upload
-    const handleFileUpload = (e) => {
+    const handleFileUpload = (e) =>
+    {
         const file = e.target.files[0];
         setUploadImg(URL.createObjectURL(file));
         inputRef.current.value = null
     };
 
+    const handleValueChange = (e) =>
+    {
+        setInputValues({ ...inputValues, [e?.target?.name]: e?.target?.value })
+    }
+
+    const handleEdit = async () =>
+    {
+        if (!inputValues?.service)
+        {
+            toast.warning("Service name required")
+        }
+        else if (!inputValues?.price)
+        {
+            toast.warning("Service price required")
+        }
+        else
+        {
+            try
+            {
+                const data = await UpdateService('/updateService', inputValues)
+                if (data?.message === "service updated successfully")
+                {
+                    setModal('')
+                    toast.success("Service updated succesfully")
+                    getServiceTypes()
+                } else
+                {
+                    toast.error("Some error occurred")
+                }
+
+            } catch (error)
+            {
+                toast.error("Some error occurred")
+            }
+        }
+
+    }
 
     // const handleAdd = async () => {
     //     if (!uploadImg) {
@@ -75,10 +106,10 @@ const EditManageService = ({ setModal }) =>
                         </div>
                     </div>
                     <div className='addProductCategory_inputSec'>
-                        <input type="text" placeholder='Enter service name' onChange={(e) => setName(e.target.value)} />
+                        <input type="text" placeholder='Enter service name' name='service' value={inputValues?.service} onChange={handleValueChange} />
                     </div>
                     <div className='addProductCategory_inputSec'>
-                        <input type="text" placeholder='Enter price' onChange={(e) => setName(e.target.value)} />
+                        <input type="text" placeholder='Enter price' name='price' value={inputValues?.price} onChange={handleValueChange} />
                     </div>
 
                     <div className='addProductCategory_done'>
