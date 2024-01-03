@@ -41,3 +41,15 @@ export const UpdateService = async (body) =>
     const res = await instance.post('/updateService', body);
     return res?.data;
 }
+
+export const GetPendingAppointment = async () =>
+{
+    const res = await instance.post('/getPendingAppointment');
+    return res?.data;
+}
+
+export const GetAllAppointment = async () =>
+{
+    const res = await instance.post('/getAllAppointment');
+    return res?.data;
+}

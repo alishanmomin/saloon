@@ -1,17 +1,20 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Sidebar from '../../components/Sidebar'
 import PendingAppointmentTable from '../../components/Tables/PendingAppointmentTable'
 import Confirmation from '../../components/Modals/Confirmation'
-import { useState } from 'react'
 import { toast } from 'react-toastify'
 import girlImg from "../../assets/images/girlImg.png"
 import { useNavigate } from 'react-router-dom'
 import { BiSearchAlt } from 'react-icons/bi'
+import { GetPendingAppointment } from '../../utilities/api'
 
 const PendingAppointments = () => {
     const [modal, setModal] = useState("")
+    const [appointments, setAppointments] = useState([])
     const [tick, setTick] = useState(false)
+
     const navigate = useNavigate()
+    
     const allVendorData = [
         {
             vendorName: "Tom",
@@ -165,6 +168,17 @@ const PendingAppointments = () => {
         }
     }
 
+    const getPendingAppointments = async () =>
+    {
+        const data = await GetPendingAppointment()
+        setAppointments(data?.data?.services)
+    }
+    useEffect(() =>
+    {
+        getPendingAppointments()
+        // eslint-disable-next-line
+    }, [])
+
 
     return (
         <>
@@ -192,7 +206,7 @@ const PendingAppointments = () => {
                         </div>
 
                         <div style={{ marginTop: "10px" }} className='dashboard_whiteBox'>
-                            <PendingAppointmentTable handleAction={handleAction} allVendorData={allVendorData} />
+                            <PendingAppointmentTable handleAction={handleAction} allVendorData={allVendorData} appointments={appointments} />
                         </div>
                     </div>
                 </div>

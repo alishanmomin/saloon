@@ -1,13 +1,16 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Sidebar from '../../components/Sidebar'
 import AllAppointmentsTable from '../../components/Tables/AllAppointmentsTable'
 import VendorDetail from '../../components/Modals/VendorDetail'
 import girlImg from "../../assets/images/girlImg.png"
 import { BiSearchAlt } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom'
+import { GetAllAppointment } from '../../utilities/api'
 
-const AllVendors = () => {
+const AllVendors = () =>
+{
     const [modal, setModal] = useState("")
+    const [appointments, setAppointments] = useState([])
     const navigate = useNavigate()
 
     const allVendorData = [
@@ -123,6 +126,17 @@ const AllVendors = () => {
         },
     ]
 
+    const getAppointments = async () =>
+    {
+        const data = await GetAllAppointment()
+        setAppointments(data?.data?.services)
+    }
+    useEffect(() =>
+    {
+        getAppointments()
+        // eslint-disable-next-line
+    }, [])
+
 
     return (
         <>
@@ -149,9 +163,9 @@ const AllVendors = () => {
                                 {/* <i onClick={() => disptach(setOpen(open === true ? false : true))} class="fa-solid dashboard_links fa-bars"></i> */}
                             </div>
                         </div>
-                    
+
                         <div className='dashboard_whiteBox'>
-                            <AllAppointmentsTable setModal={setModal} allVendorData={allVendorData} />
+                            <AllAppointmentsTable setModal={setModal} allVendorData={allVendorData} appointments={appointments} />
                         </div>
                     </div>
                 </div>
