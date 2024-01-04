@@ -7,9 +7,11 @@ import girlImg from "../../assets/images/girlImg.png"
 import { useNavigate } from 'react-router-dom'
 import { BiSearchAlt } from 'react-icons/bi'
 import { GetPendingAppointment } from '../../utilities/api'
+import { filterData } from '../../utilities/filterData'
 
 const PendingAppointments = () => {
     const [modal, setModal] = useState("")
+    const [search, setSearch] = useState("")
     const [appointments, setAppointments] = useState([])
     const [tick, setTick] = useState(false)
 
@@ -17,7 +19,7 @@ const PendingAppointments = () => {
     
     const allVendorData = [
         {
-            vendorName: "Tom",
+            vendorName: "Sun",
             email: "tom@gmail.com",
             contact: "212121",
             joiningDate: "04/03/2023",
@@ -39,7 +41,7 @@ const PendingAppointments = () => {
             type: "Walk In"
         },
         {
-            vendorName: "Tom",
+            vendorName: "Wer",
             email: "tom@gmail.com",
             contact: "212121",
             joiningDate: "04/03/2023",
@@ -50,7 +52,7 @@ const PendingAppointments = () => {
             type: "Walk In"
         },
         {
-            vendorName: "Tom",
+            vendorName: "Try",
             email: "tom@gmail.com",
             contact: "212121",
             joiningDate: "04/03/2023",
@@ -61,7 +63,7 @@ const PendingAppointments = () => {
             type: "Walk In"
         },
         {
-            vendorName: "Tom",
+            vendorName: "Yup",
             email: "tom@gmail.com",
             contact: "212121",
             joiningDate: "04/03/2023",
@@ -72,7 +74,7 @@ const PendingAppointments = () => {
             type: "Home Visit"
         },
         {
-            vendorName: "Tom",
+            vendorName: "Der",
             email: "tom@gmail.com",
             contact: "212121",
             joiningDate: "04/03/2023",
@@ -83,29 +85,7 @@ const PendingAppointments = () => {
             type: "Home Visit"
         },
         {
-            vendorName: "Tom",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: true,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Walk In"
-        },
-        {
-            vendorName: "Tom",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: false,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Home Visit"
-        },
-        {
-            vendorName: "Tom",
+            vendorName: "Jum",
             email: "tom@gmail.com",
             contact: "212121",
             joiningDate: "04/03/2023",
@@ -116,18 +96,7 @@ const PendingAppointments = () => {
             type: "Walk In"
         },
         {
-            vendorName: "Tom",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: true,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Home Visit"
-        },
-        {
-            vendorName: "Tom",
+            vendorName: "Pop",
             email: "tom@gmail.com",
             contact: "212121",
             joiningDate: "04/03/2023",
@@ -138,7 +107,40 @@ const PendingAppointments = () => {
             type: "Home Visit"
         },
         {
-            vendorName: "Tom",
+            vendorName: "Jok",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: true,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Walk In"
+        },
+        {
+            vendorName: "Ytr",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: true,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Home Visit"
+        },
+        {
+            vendorName: "Nba",
+            email: "tom@gmail.com",
+            contact: "212121",
+            joiningDate: "04/03/2023",
+            approvalDate: "02/03/2023",
+            paymentStatus: false,
+            totalProducts: "5",
+            vendorImg: girlImg,
+            type: "Home Visit"
+        },
+        {
+            vendorName: "Cvf",
             email: "tom@gmail.com",
             contact: "212121",
             joiningDate: "04/03/2023",
@@ -149,6 +151,8 @@ const PendingAppointments = () => {
             type: "Home Visit"
         },
     ]
+
+    const temp = filterData(["type", "vendorName"], search, allVendorData)
 
     const handleAction = (res) => {
         if (res === 'accept') {
@@ -197,7 +201,7 @@ const PendingAppointments = () => {
 
                             <div className='dashboard_lastTop'>
                                 <div className="dashboard_inputWrap">
-                                    <input type="text" placeholder='Type customer name or email...' />
+                                    <input type="text" placeholder='Type customer name or email...' onChange={(e) => setSearch(e.target.value)}/>
                                     <BiSearchAlt className='fa-solid' />
                                     {/* <i class="fa-solid fa-magnifying-glass"></i> */}
                                 </div>
@@ -206,7 +210,7 @@ const PendingAppointments = () => {
                         </div>
 
                         <div style={{ marginTop: "10px" }} className='dashboard_whiteBox'>
-                            <PendingAppointmentTable handleAction={handleAction} allVendorData={allVendorData} appointments={appointments} />
+                            <PendingAppointmentTable handleAction={handleAction} allVendorData={temp} appointments={appointments} />
                         </div>
                     </div>
                 </div>
