@@ -53,3 +53,27 @@ export const GetAllAppointment = async () =>
     const res = await instance.post('/getAllAppointment');
     return res?.data;
 }
+
+export const GetAllBanners = async () =>
+{
+    const res = await instance.post('/getBanners');
+    return res?.data;
+}
+
+export const CreateBanner = async (body) =>
+{
+    const res = await instance.post('/createBanner', body);
+    return res?.data;
+}
+
+export const UpdateBanner = async (body) =>
+{
+    const res = await instance.post('/updateBanner', body);
+    return res?.data;
+}
+
+export const UpdateBannerStatus = async (body) =>
+{
+    const res = await instance.post('/updateBannerStatus', body);
+    return res?.data;
+}

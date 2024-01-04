@@ -1,8 +1,11 @@
 import React from 'react'
+import {statusClass, statusText} from '../../utilities/statusText'
+import girlImg from "../../assets/images/girlImg.png"
+import { dateFormat } from '../../utilities/dateFormat'
 
-const AllVendorsTable = ({ allVendorData, homeView }) => {
+const AllVendorsTable = ({ homeView, appointments }) => {
     console.log(homeView)
-    const header = ['No.', 'Customer', 'Appointment Type', 'Location', 'Contact No', 'Date and Time', 'Appointment Status']
+    const header = ['No.', 'Customer', 'Category', 'Service', 'Appointment Type', 'Location', 'Contact No', 'Date and Time', 'Appointment Status']
 
     return (
         <div className='tables'>
@@ -18,24 +21,26 @@ const AllVendorsTable = ({ allVendorData, homeView }) => {
                         <tr>
                             {header?.map((item) => <th>{item}</th>)}
                         </tr>
-                        {allVendorData?.map((item, index) => {
+                        {appointments?.map((item, index) => {
                             return (
                                 <tr>
                                     <td>{index + 1}</td>
                                     <td>
                                         <div className='tables_authorInfo'>
-                                            <img src={item?.vendorImg} alt="vendorImg" />
+                                            <img src={girlImg} alt="vendorImg" />
                                             <div className='tables_nameEmail'>
-                                                <p className='name'>{item?.vendorName}</p>
-                                                <p className='email'>{item?.email}</p>
+                                                <p className='name'>{item?.user?.name}</p>
+                                                <p className='email'>{item?.user?.email}</p>
                                             </div>
                                         </div>
                                     </td>
+                                    <td>{item?.service?.category?.heading}</td>
+                                    <td>{item?.service?.service}</td>
                                     <td>{item?.type}</td>
                                     <td>{item?.type === 'Home Visit' ?  "ABC Road, Karachi" : "-"}</td>
-                                    <td>{item?.contact}</td>
-                                    <td>Fri Dec 29 2023 2:00 PM</td>
-                                    <td> <p style={{ maxWidth: item?.paymentStatus ? "120px" : "120px", textAlign: "center" }} className={item?.paymentStatus ? "tables_green" : "tables_remove"}>{item?.paymentStatus ? "Accepted" : "Rejected"}</p> </td>
+                                    <td>{item?.user?.phone}</td>
+                                    <td>{dateFormat(item?.createdAt)}</td>
+                                    <td> <p style={{ maxWidth: item?.paymentStatus ? "120px" : "120px", textAlign: "center" }} className={statusClass(item?.status)}>{statusText(item?.status)}</p> </td>
                                     {/* <td> <button onClick={() => handleView()} className='tables_view'>View</button> </td> */}
                                 </tr >
                             );

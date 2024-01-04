@@ -1,90 +1,73 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Sidebar from '../../components/Sidebar'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import BannerTable from '../../components/Tables/BannerTable'
 import AddBanner from '../../components/Modals/AddBanner'
 import EditBanner from '../../components/Modals/EditBanner';
-import slideImg from "../../assets/images/slide.jpg"
 import Confirmation from '../../components/Modals/Confirmation'
 import { toast } from 'react-toastify';
+import { GetAllBanners, UpdateBannerStatus } from '../../utilities/api'
 
 
-const Banner = () => {
+const Banner = () =>
+{
     const [modal, setModal] = useState("")
+    const [banners, setBanners] = useState([])
+    const [banner, setBanner] = useState({})
     const navigate = useNavigate()
-    const bannerData = [
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-        {
-            img: slideImg
-        },
-    ]
 
-    const handleAction = (res) => {
-        if (res === 'accept') {
+    const getBanners = async () =>
+    {
+        const data = await GetAllBanners()
+        setBanners(data?.data)
+    }
+    useEffect(() =>
+    {
+        getBanners()
+        // eslint-disable-next-line
+    }, [])
+
+
+    
+    const handleAction = (res) =>
+    {
+        if (res === 'accept')
+        {
             // setTick(false)
             setModal('view')
-        } else if (res === "reject") {
+        } else if (res === "reject")
+        {
             // setTick(true)
             setModal('view')
         }
     }
 
 
-    const handleModal = (res) => {
-        if (res === "yes") {
+    const handleModal = (res) =>
+    {
+        if (res === "yes")
+        {
             setModal("")
             toast.success(`Banner Deleted Successfully`)
+        }
+    }
+
+    // handle product toggler 
+    const handleBannerStatus = async (res) =>
+    {
+        const body = {
+            id: res?.id,
+            status: !res?.isActive,
+        }
+        try {
+            const res = await UpdateBannerStatus(body)
+            if (res?.message === "banner status updated successfully") {
+                toast.success(`Banner status updated successfully`)
+                getBanners()
+            }
+        } catch (err) {
+            toast.error("Some error occured while updating status")
         }
     }
 
@@ -93,8 +76,8 @@ const Banner = () => {
             <div className="mainLayout">
                 <div className="mainLayout_parent">
                     <Sidebar index={"8"} />
-                    {modal === 'create' && <AddBanner setModal={setModal} />}
-                    {modal === 'edit' && <EditBanner setModal={setModal} />}
+                    {modal === 'create' && <AddBanner getBanners={getBanners} setModal={setModal} />}
+                    {modal === 'edit' && <EditBanner banner={banner} getBanners={getBanners} setModal={setModal} />}
                     {modal === "view" && <Confirmation handleModal={handleModal} tick={true} setModal={setModal} />}
                     <div className="dashboard">
                         <div className='dashboard_infoOptionTop'>
@@ -116,7 +99,7 @@ const Banner = () => {
                         </div>
 
                         <div style={{ marginTop: "10px" }} className='dashboard_whiteBox'>
-                            <BannerTable handleAction={handleAction} setModal={setModal} bannerData={bannerData} />
+                            <BannerTable handleBannerStatus={handleBannerStatus} setBanner={setBanner} handleAction={handleAction} setModal={setModal} bannerData={banners} />
                         </div>
                     </div>
                 </div>
