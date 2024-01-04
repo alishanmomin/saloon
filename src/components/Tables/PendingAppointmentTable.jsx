@@ -1,8 +1,11 @@
 import React from 'react'
+import girlImg from "../../assets/images/girlImg.png"
+import { dateFormat } from '../../utilities/dateFormat'
 
-const PendingAppointmentTable = ({ allVendorData, handleAction }) => {
+const PendingAppointmentTable = ({ appointments, handleAction, setAppointmentId }) =>
+{
 
-    const header = ['No.', 'Customer', 'Appointment Type', 'Location', 'Date', 'Contact', 'Accept', 'Reject']
+    const header = ['No.', 'Customer', 'Category', 'Service', 'Appointment Type', 'Date', 'Contact', 'Accept', 'Reject']
 
 
     return (
@@ -19,25 +22,27 @@ const PendingAppointmentTable = ({ allVendorData, handleAction }) => {
                         <tr>
                             {header?.map((item) => <th>{item}</th>)}
                         </tr>
-                        {allVendorData?.map((item, index) => {
+                        {appointments?.map((item, index) =>
+                        {
                             return (
                                 <tr>
                                     <td>{index + 1}</td>
                                     <td>
                                         <div className='tables_authorInfo'>
-                                            <img src={item?.vendorImg} alt="vendorImg" />
+                                            <img src={girlImg} alt="vendorImg" />
                                             <div className='tables_nameEmail'>
-                                                <p className='name'>{item?.vendorName}</p>
-                                                <p className='email'>{item?.email}</p>
+                                                <p className='name'>{item?.user?.name}</p>
+                                                <p className='email'>{item?.user?.email}</p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{item?.type}</td>
-                                    <td>{item?.type === 'Home Visit' ?  "ABC Road, Karachi" : "-"}</td>
-                                    <td>{new Date()?.toDateString()} 2:00 PM</td>
-                                    <td>{item?.contact}</td>
-                                    <td onClick={() => handleAction("accept")}> <button className='tables_accept'><i class="fa-solid fa-check"></i></button> </td>
-                                    <td onClick={() => handleAction("reject")} ><button className='tables_reject'><i class="fa-solid fa-x"></i></button> </td>
+                                    <td>{item?.service?.category?.heading}</td>
+                                    <td>{item?.service?.service}</td>
+                                    <td>{item?.location === 1 ? 'Home Visit' :  "Walk In"}</td>
+                                    <td>{dateFormat(item?.createdAt)}</td>
+                                    <td>{item?.user?.phone}</td>                                    
+                                    <td onClick={() => {setAppointmentId(item?.id); handleAction("accept")}}> <button className='tables_accept'><i class="fa-solid fa-check"></i></button> </td>
+                                    <td onClick={() => {setAppointmentId(item?.id); handleAction("reject")}} ><button className='tables_reject'><i class="fa-solid fa-x"></i></button> </td>
                                 </tr >
                             );
                         })}

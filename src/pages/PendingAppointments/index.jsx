@@ -1,182 +1,68 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Sidebar from '../../components/Sidebar'
 import PendingAppointmentTable from '../../components/Tables/PendingAppointmentTable'
 import Confirmation from '../../components/Modals/Confirmation'
 import { toast } from 'react-toastify'
-import girlImg from "../../assets/images/girlImg.png"
 import { useNavigate } from 'react-router-dom'
 import { BiSearchAlt } from 'react-icons/bi'
-import { GetPendingAppointment } from '../../utilities/api'
+import { GetPendingAppointment, UpdateAppointmentStatus } from '../../utilities/api'
 import { filterData } from '../../utilities/filterData'
 
-const PendingAppointments = () => {
+const PendingAppointments = () =>
+{
     const [modal, setModal] = useState("")
     const [search, setSearch] = useState("")
     const [appointments, setAppointments] = useState([])
+    const [appointmentId, setAppointmentId] = useState("")
     const [tick, setTick] = useState(false)
 
     const navigate = useNavigate()
-    
-    const allVendorData = [
-        {
-            vendorName: "Sun",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: true,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Home Visit"
-        },
-        {
-            vendorName: "Tom",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: false,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Walk In"
-        },
-        {
-            vendorName: "Wer",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: true,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Walk In"
-        },
-        {
-            vendorName: "Try",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: true,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Walk In"
-        },
-        {
-            vendorName: "Yup",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: false,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Home Visit"
-        },
-        {
-            vendorName: "Der",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: true,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Home Visit"
-        },
-        {
-            vendorName: "Jum",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: true,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Walk In"
-        },
-        {
-            vendorName: "Pop",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: false,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Home Visit"
-        },
-        {
-            vendorName: "Jok",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: true,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Walk In"
-        },
-        {
-            vendorName: "Ytr",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: true,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Home Visit"
-        },
-        {
-            vendorName: "Nba",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: false,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Home Visit"
-        },
-        {
-            vendorName: "Cvf",
-            email: "tom@gmail.com",
-            contact: "212121",
-            joiningDate: "04/03/2023",
-            approvalDate: "02/03/2023",
-            paymentStatus: true,
-            totalProducts: "5",
-            vendorImg: girlImg,
-            type: "Home Visit"
-        },
-    ]
-
-    const temp = filterData(["type", "vendorName"], search, allVendorData)
-
-    const handleAction = (res) => {
-        if (res === 'accept') {
-            setTick(false)
-            setModal('view')
-        } else if (res === "reject") {
-            setTick(true)
-            setModal('view')
-        }
-    }
-
-
-    const handleModal = (res) => {
-        if (res === "yes") {
-            setModal("")
-            toast.success(`Vendor ${!tick ? "accepted" : "rejected"} succesfully`)
-        }
-    }
-
+    const temp = filterData(["type", "vendorName"], search, appointments)
+    console.log("temp", temp)
     const getPendingAppointments = async () =>
     {
         const data = await GetPendingAppointment()
-        setAppointments(data?.data?.services)
+        setAppointments(data?.data)
     }
+
+    const handleAction = (res) =>
+    {
+        if (res === 'accept')
+        {
+            setModal('view')
+            setTick(false)
+        } else if (res === "reject")
+        {
+            setModal('view')
+            setTick(true)
+        }
+    }
+
+
+    const handleModal = async (res) =>
+    {
+        if (res === "yes")
+        {
+            try
+            {
+                const data = await UpdateAppointmentStatus({ id: appointmentId, status: tick ? 2 : 1 })
+                if (data?.message === "appointment status updated successfully")
+                {
+                    setModal('')
+                    toast.success("Appointment accepted succesfully")
+                    getPendingAppointments()
+                } else
+                {
+                    toast.error("Some error occurred")
+                }
+
+            } catch (error)
+            {
+                toast.error("Some error occurred")
+            }
+        }
+    }
+
     useEffect(() =>
     {
         getPendingAppointments()
@@ -201,7 +87,7 @@ const PendingAppointments = () => {
 
                             <div className='dashboard_lastTop'>
                                 <div className="dashboard_inputWrap">
-                                    <input type="text" placeholder='Type customer name or email...' onChange={(e) => setSearch(e.target.value)}/>
+                                    <input type="text" placeholder='Type customer name or email...' onChange={(e) => setSearch(e.target.value)} />
                                     <BiSearchAlt className='fa-solid' />
                                     {/* <i class="fa-solid fa-magnifying-glass"></i> */}
                                 </div>
@@ -210,7 +96,7 @@ const PendingAppointments = () => {
                         </div>
 
                         <div style={{ marginTop: "10px" }} className='dashboard_whiteBox'>
-                            <PendingAppointmentTable handleAction={handleAction} allVendorData={temp} appointments={appointments} />
+                            <PendingAppointmentTable setAppointmentId={setAppointmentId} handleAction={handleAction} appointments={appointments} />
                         </div>
                     </div>
                 </div>
