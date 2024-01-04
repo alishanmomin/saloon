@@ -83,3 +83,9 @@ export const UpdateAppointmentStatus = async (body) =>
     const res = await instance.post('/updateAppointmentStatus', body);
     return res?.data;
 }
+
+export const GetStats = async () =>
+{
+    const res = await instance.post('/getStats');
+    return res?.data;
+}

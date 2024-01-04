@@ -49,7 +49,7 @@ const PendingAppointments = () =>
                 if (data?.message === "appointment status updated successfully")
                 {
                     setModal('')
-                    toast.success("Appointment accepted succesfully")
+                    toast.success(tick === 2 ? "Appointment rejected succesfully" : "Appointment accepted succesfully" )
                     getPendingAppointments()
                 } else
                 {

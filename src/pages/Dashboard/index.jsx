@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Sidebar from '../../components/Sidebar'
 import DashboardTopCards from '../../components/DashboardTopCards'
 import AllAppointmentsTable from '../../components/Tables/AllAppointmentsTable'
@@ -10,11 +10,11 @@ import { IoWallet, IoCart } from "react-icons/io5"
 import { TbWorld } from "react-icons/tb";
 import { FaFileLines } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom'
+import { GetStats } from '../../utilities/api'
 
 const Dashboard = () => {
-    const [modal, setModal] = useState()
-    const navigate = useNavigate()
-    const data = [
+
+    const temp = [
         {
             text: "50",
             number: "Customer Request",
@@ -43,6 +43,36 @@ const Dashboard = () => {
         },
     ];
 
+    const [modal, setModal] = useState()
+    const [stats] = useState({})
+    const [data] = useState(temp)
+
+    const getStats = async () =>
+    {
+        const data = await GetStats()
+        let stat = data?.data
+
+        // const updatedData = temp.map((item) => {
+        //     const statKey = Object.keys(item).find(key => key.toLowerCase().includes('number'));
+        //     const statValue = statKey ? stat[statKey] : null;
+
+        //     return {
+        //         ...item,
+        //         text: statValue !== null ? statValue.toString() : item.text,
+        //         // Add other properties you want to update
+        //     };
+        // });
+        // console.log("updatedData", updatedData)
+        // setData(updatedData);
+    }
+    useEffect(() =>
+    {
+        getStats()
+        // eslint-disable-next-line
+    }, [])
+    console.log("stats", stats)
+    
+    const navigate = useNavigate()
     const allVendorData = [
         {
             vendorName: "Tom",
