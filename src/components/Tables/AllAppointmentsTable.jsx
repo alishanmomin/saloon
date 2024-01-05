@@ -2,6 +2,7 @@ import React from 'react'
 import {statusClass, statusText} from '../../utilities/statusText'
 import girlImg from "../../assets/images/girlImg.png"
 import { dateFormat } from '../../utilities/dateFormat'
+import NoDataFound from '../NoDataFound'
 
 const AllVendorsTable = ({ homeView, appointments }) => {
     console.log(appointments)
@@ -15,6 +16,8 @@ const AllVendorsTable = ({ homeView, appointments }) => {
                 </div>
                 <div></div>
             </div>
+            {
+                appointments?.length > 0 ? 
             <div style={{ height: homeView ? "calc(100vh - 350px)" : 'calc(100vh - 240px)' }} className='tables_scroller'>
                 <table id="table-to-xls">
                     <tbody>
@@ -45,7 +48,8 @@ const AllVendorsTable = ({ homeView, appointments }) => {
                         })}
                     </tbody>
                 </table>
-            </div>
+            </div> : <NoDataFound />
+            }
 
         </div >
     )

@@ -1,5 +1,6 @@
 import React from 'react'
 import hair from '../../assets/images/hairCut.jpg'
+import NoDataFound from '../NoDataFound'
 
 const ManageServiceTable = ({ servicesTypes, setModal, setService }) =>
 {
@@ -13,23 +14,24 @@ const ManageServiceTable = ({ servicesTypes, setModal, setService }) =>
                 </div>
                 <div></div>
             </div>
-            <div style={{ height: 'calc(100vh - 220px)' }} className='tables_scroller'>
-                <table id="table-to-xls">
-                    <tbody>
-                        <tr>
-                            {header?.map((item) => <th>{item}</th>)}
-                        </tr>
-                        {servicesTypes?.map((item, index) =>
-                        {
-                            return (
-                                <tr>
-                                    <td>{index + 1}</td>
-                                    <td>
-                                        <img className='tables_img' src={hair} alt='' />
-                                    </td>
-                                    <td>{item?.service}</td>
-                                    <td>${item?.price}</td>
-                                    {/* <td>
+            {servicesTypes?.length > 0 ?
+                <div style={{ height: 'calc(100vh - 220px)' }} className='tables_scroller'>
+                    <table id="table-to-xls">
+                        <tbody>
+                            <tr>
+                                {header?.map((item) => <th>{item}</th>)}
+                            </tr>
+                            {servicesTypes?.map((item, index) =>
+                            {
+                                return (
+                                    <tr>
+                                        <td>{index + 1}</td>
+                                        <td>
+                                            <img className='tables_img' src={hair} alt='' />
+                                        </td>
+                                        <td>{item?.service}</td>
+                                        <td>${item?.price}</td>
+                                        {/* <td>
                                         <label className="switch">
                                             <input
                                                 onChange={() => handleToggler(res)}
@@ -39,13 +41,14 @@ const ManageServiceTable = ({ servicesTypes, setModal, setService }) =>
                                             <span className="slider round"></span>
                                         </label>
                                     </td> */}
-                                    <td><button onClick={() => {setService(item); setModal("edit")}} className='tables_view'>Edit</button></td>
-                                </tr >
-                            );
-                        })}
-                    </tbody>
-                </table>
-            </div>
+                                        <td><button onClick={() => { setService(item); setModal("edit") }} className='tables_view'>Edit</button></td>
+                                    </tr >
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+                : <NoDataFound />}
         </div >
     )
 }
