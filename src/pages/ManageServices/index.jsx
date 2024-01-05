@@ -6,15 +6,19 @@ import AddManageAttribute from '../../components/Modals/AddManageAttribute'
 import EditManageAttribute from '../../components/Modals/EditManageAttribute'
 import { BiSearchAlt } from 'react-icons/bi'
 import { GetServiceTypes } from '../../utilities/api'
+import { filterData } from '../../utilities/filterData'
 
 const ManageService = () =>
 {
     const [modal, setModal] = useState("")
     const [servicesTypes, setServicesTypes] = useState([])
     const [service, setService] = useState({})
+    const [search, setSearch] = useState("")
+
     const navigate = useNavigate()
     const categoryId = new URLSearchParams(window?.location?.search)?.get("id")
 
+    const filterServices = filterData(['service'], search, servicesTypes)
     const getServiceTypes = async () =>
     {
         const data = await GetServiceTypes({ categoryId })
@@ -44,7 +48,7 @@ const ManageService = () =>
 
                             <div className='dashboard_lastTop'>
                                 <div className="dashboard_inputWrap">
-                                    <input type="text" placeholder='Type manage attribute name...' />
+                                    <input type="text" placeholder='Type name...' onChange={(e) => setSearch(e.target.value)}/>
                                     <BiSearchAlt className='fa-solid' />
                                     {/* <i class="fa-solid fa-magnifying-glass"></i> */}
                                 </div>
@@ -53,7 +57,7 @@ const ManageService = () =>
                             </div>
                         </div>
                         <div style={{ marginTop: "10px" }} className='dashboard_whiteBox'>
-                            <ManageAttributeTable setService={setService} setModal={setModal} servicesTypes={servicesTypes} />
+                            <ManageAttributeTable setService={setService} setModal={setModal} servicesTypes={filterServices} />
                         </div>
                     </div>
                 </div>

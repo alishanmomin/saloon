@@ -6,14 +6,17 @@ import EditService from '../../components/Modals/EditService'
 import { useNavigate } from 'react-router-dom'
 import { BiSearchAlt } from 'react-icons/bi'
 import { GetAllCategory } from '../../utilities/api'
+import { filterData } from '../../utilities/filterData'
 
 const OurServices = () =>
 {
 
     const [modal, setModal] = useState("")
+    const [search, setSearch] = useState("")
     const [categories, setCategories] = useState([])
     const [category, setCategory] = useState({})
 
+    const filterItems = filterData(['heading'], search, categories)
     const navigate = useNavigate()
     const getCategories = async () =>
     {
@@ -43,7 +46,7 @@ const OurServices = () =>
 
                             <div className='dashboard_lastTop'>
                                 <div className="dashboard_inputWrap">
-                                    <input type="text" placeholder='Type service name...' />
+                                    <input type="text" placeholder='Type service name...' onChange={(e) => setSearch(e.target.value)} />
                                     <BiSearchAlt className='fa-solid' />
                                     {/* <i class="fa-solid fa-magnifying-glass"></i> */}
                                 </div>
@@ -53,7 +56,7 @@ const OurServices = () =>
                         </div>
 
                         <div style={{ marginTop: '10px' }} className='dashboard_whiteBox'>
-                            <ServiceTable setCategory={setCategory} setModal={setModal} categories={categories} />
+                            <ServiceTable setCategory={setCategory} setModal={setModal} categories={filterItems} />
                         </div>
                     </div>
                 </div>
