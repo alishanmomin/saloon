@@ -84,8 +84,20 @@ export const UpdateAppointmentStatus = async (body) =>
     return res?.data;
 }
 
+export const UpdatePassword = async (body) =>
+{
+    const res = await instance.post('/updatePassword', body);
+    return res?.data;
+}
+
 export const GetStats = async () =>
 {
     const res = await instance.post('/getStats');
+    return res?.data;
+}
+
+export const GetReviews = async () =>
+{
+    const res = await instance.post('/getReviews');
     return res?.data;
 }

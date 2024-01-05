@@ -6,71 +6,25 @@ import { useState } from 'react'
 import VendorDetail from '../../components/Modals/VendorDetail'
 import girlImg from "../../assets/images/girlImg.png"
 import { BiSearchAlt } from 'react-icons/bi'
-import { IoWallet, IoCart } from "react-icons/io5"
-import { TbWorld } from "react-icons/tb";
-import { FaFileLines } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom'
 import { GetStats } from '../../utilities/api'
 
 const Dashboard = () => {
-
-    const temp = [
-        {
-            text: "50",
-            number: "Customer Request",
-            Icons: IoWallet,
-            bottomText: " Update Now",
-        },
-        {
-            text: "10",
-            number: "Total Appointments",
-            pic: "fa-solid fa-globe",
-            Icons: TbWorld,
-            bottomText: "Last day"
-        },
-        {
-            text: "2",
-            number: "Total Reviews",
-            Icons: FaFileLines,
-            bottomText: " In the last hour",
-        },
-        {
-            text: "20",
-            number: "Total Services",
-            Icons: IoCart,
-            pic: "fa-solid fa-cart-shopping",
-            bottomText: " Update now",
-        },
-    ];
-
+  
     const [modal, setModal] = useState()
-    const [stats] = useState({})
-    const [data] = useState(temp)
+    const [stats, setStats] = useState({})
 
     const getStats = async () =>
     {
         const data = await GetStats()
-        let stat = data?.data
+        setStats(data?.data)
 
-        // const updatedData = temp.map((item) => {
-        //     const statKey = Object.keys(item).find(key => key.toLowerCase().includes('number'));
-        //     const statValue = statKey ? stat[statKey] : null;
-
-        //     return {
-        //         ...item,
-        //         text: statValue !== null ? statValue.toString() : item.text,
-        //         // Add other properties you want to update
-        //     };
-        // });
-        // console.log("updatedData", updatedData)
-        // setData(updatedData);
     }
     useEffect(() =>
     {
         getStats()
         // eslint-disable-next-line
     }, [])
-    console.log("stats", stats)
     
     const navigate = useNavigate()
     const allVendorData = [
@@ -212,13 +166,14 @@ const Dashboard = () => {
                             </div>
                         </div>
                         <div className="dashboardTopCards">
-                            {
+                        <DashboardTopCards stats={stats}/>
+                            {/* {
                                 data?.map((item, index) => (
                                     <>
                                         <DashboardTopCards index={index} item={item} Icons={item?.Icons} />
                                     </>
                                 ))
-                            }
+                            } */}
                         </div>
                         <div style={{ marginTop: "10px" }} className='dashboard_whiteBox'>
                             <AllAppointmentsTable homeView={true} setModal={setModal} allVendorData={allVendorData} />

@@ -1,83 +1,100 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import ComplaintsCard from '../../components/ComplaintsCard'
 import Sidebar from '../../components/Sidebar'
 import { useNavigate } from 'react-router-dom';
 import { BiSearchAlt } from 'react-icons/bi'
+import { GetReviews } from '../../utilities/api';
 
 const Complaints = () => {
     const navigate = useNavigate()
-    const complaintData = [
-        {
-            title: "Excellent Service",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
-            author: "Chris Evan",
-            id: "23324",
-            designation: "User",
-        },
-        {
-            title: "Excellent Service",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
-            author: "Chris Evan",
-            id: "23324",
-            designation: "User",
-        },
-        {
-            title: "Excellent Service",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
-            author: "Chris Evan",
-            id: "23324",
-            designation: "User",
-        },
-        {
-            title: "Excellent Service",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
-            author: "Chris Evan",
-            id: "23324",
-            designation: "User",
-        },
-        {
-            title: "Excellent Service",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
-            author: "Chris Evan",
-            id: "23324",
-            designation: "User",
-        },
-        {
-            title: "Excellent Service",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
-            author: "Chris Evan",
-            id: "23324",
-            designation: "User",
-        },
-        {
-            title: "Excellent Service",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
-            author: "Chris Evan",
-            id: "23324",
-            designation: "User",
-        },
-        {
-            title: "Excellent Service",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
-            author: "Chris Evan",
-            id: "23324",
-            designation: "User",
-        },
-        {
-            title: "Excellent Service",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
-            author: "Chris Evan",
-            id: "23324",
-            designation: "User",
-        },
-        {
-            title: "Excellent Service",
-            description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
-            author: "Chris Evan",
-            id: "23324",
-            designation: "User",
-        },
-    ]
+
+    const [reviews, setReviews] = useState([])
+
+    const getAllReviews = async () =>
+    {
+        const data = await GetReviews()
+        setReviews(data?.data)
+
+    }
+    useEffect(() =>
+    {
+        getAllReviews()
+        // eslint-disable-next-line
+    }, [])
+
+
+    // const complaintData = [
+    //     {
+    //         title: "Excellent Service",
+    //         description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
+    //         author: "Chris Evan",
+    //         id: "23324",
+    //         designation: "User",
+    //     },
+    //     {
+    //         title: "Excellent Service",
+    //         description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
+    //         author: "Chris Evan",
+    //         id: "23324",
+    //         designation: "User",
+    //     },
+    //     {
+    //         title: "Excellent Service",
+    //         description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
+    //         author: "Chris Evan",
+    //         id: "23324",
+    //         designation: "User",
+    //     },
+    //     {
+    //         title: "Excellent Service",
+    //         description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
+    //         author: "Chris Evan",
+    //         id: "23324",
+    //         designation: "User",
+    //     },
+    //     {
+    //         title: "Excellent Service",
+    //         description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
+    //         author: "Chris Evan",
+    //         id: "23324",
+    //         designation: "User",
+    //     },
+    //     {
+    //         title: "Excellent Service",
+    //         description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
+    //         author: "Chris Evan",
+    //         id: "23324",
+    //         designation: "User",
+    //     },
+    //     {
+    //         title: "Excellent Service",
+    //         description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
+    //         author: "Chris Evan",
+    //         id: "23324",
+    //         designation: "User",
+    //     },
+    //     {
+    //         title: "Excellent Service",
+    //         description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
+    //         author: "Chris Evan",
+    //         id: "23324",
+    //         designation: "User",
+    //     },
+    //     {
+    //         title: "Excellent Service",
+    //         description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
+    //         author: "Chris Evan",
+    //         id: "23324",
+    //         designation: "User",
+    //     },
+    //     {
+    //         title: "Excellent Service",
+    //         description: `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia assumenda nam tempora voluptatem nemo, corrupti neque illo perspiciatis! Optio maiores magnam magni omnis debitis perspiciatis sunt aliquam repellendus molestias. Exercitationem.`,
+    //         author: "Chris Evan",
+    //         id: "23324",
+    //         designation: "User",
+    //     },
+    // ]
 
     return (
         <div className="mainLayout">
@@ -104,7 +121,7 @@ const Complaints = () => {
 
                     <div className="complaints">
                         <div className="complaints_parent">
-                            {complaintData?.map((item, index) => (
+                            {reviews?.map((item, index) => (
                                 <ComplaintsCard
                                     item={item}
                                     index={index}

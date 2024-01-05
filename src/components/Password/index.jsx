@@ -1,15 +1,38 @@
 import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 import { FaLock } from "react-icons/fa";
+import { UpdatePassword } from '../../utilities/api';
 
-const Password = () => {
+const Password = () =>
+{
     const [eyeIcon, setEyeIcon] = useState(false);
     const [eyeIcon2, setEyeIcon2] = useState(false);
     const [pass, setPass] = useState("");
     const [cPass, setCpass] = useState("");
 
-    const handleUpdate = () => {
-        toast.success("Password updated succesfully")
+    const handleUpdate = async () =>
+    {
+
+        if (pass === cPass)
+        {
+            try
+            {
+                const res = await UpdatePassword({ password: pass })
+                if (res?.message === "password updated successfully")
+                {
+                    setPass("")
+                    setCpass("")
+                    toast.success("Password updated succesfully")
+                }
+            } catch (err)
+            {
+                toast.error("Server error")
+            }
+
+        } else
+        {
+            toast.error("Password doesn't matched")
+        }
     }
     return (
         <div className='setPassword'>
